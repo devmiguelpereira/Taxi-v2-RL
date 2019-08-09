@@ -14,7 +14,7 @@ print("Initializing the Q table with zero values")
 
 # Create the hyper-parameters which will be used to train our agent
 TOTAL_EPISODES = 50000  # total episodes is the number of episodes used to train our algorithm
-TEST_EPISODES = 100  # Total test episodes to test our algorithm
+TEST_EPISODES = 2  # Total test episodes to test our algorithm
 MAX_STEPS_PER_EPISODE = 99  # Max steps per episode
 
 LEARNING_RATE = 0.7  # Learning rate
