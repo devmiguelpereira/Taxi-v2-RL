@@ -63,8 +63,35 @@ for episode in range(TOTAL_EPISODES):
     episode += 1
 
     epsilon = MIN_EPSILON + (MAX_EPSILON - MIN_EPSILON) * np.exp(-DECAY_RATE * episode)
-print("Finished training the Agent")
+print("Finished training the Agent!")
 print(q_table)
 
-print(" Testing the agent on the Environment")
+
+print(" Testing the agent on the Environment using the Q-table")
+env.reset()
+rewards = []
+
+for episode in range(TEST_EPISODES):
+    state = env.reset()
+    done = False
+    total_rewards = 0
+    print("***********************************")
+    print("EPISODE ", episode)
+
+    for step in range(MAX_STEPS_PER_EPISODE):
+        env.render()
+        # Take the action (index) that have the maximum expected future reward given that state
+        action = np.argmax(q_table[state,:])
+
+        new_state, reward, done, info = env.step(action)
+
+        total_rewards += reward
+
+        if done:
+            rewards.append(total_rewards)
+            print("Score", total_rewards)
+            break
+        state = new_state
+env.close()
+print("Score over time: " + str(sum(rewards)/TEST_EPISODES))
 
